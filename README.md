@@ -42,7 +42,7 @@ The pipeline can be used like this:
 
 `-o population_hmp`
 
-The input file and directory like it:
+This is an example of input file and directory:
 
 1. tree work_directory
 
@@ -66,12 +66,9 @@ The input file and directory like it:
 ├── genome_list
 
 2. cat genome_list
-
-  MSU.fa
-  DHX2.fa
-  02428.fa
-
-   
+MSU.fa
+   DHX2.fa
+02428.fa
 
 The genome_gff_dir is a directory which has the some genome.fa files and genome_annotation.gff files.
 
