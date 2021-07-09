@@ -46,11 +46,30 @@ The input file and directory like it:
 
 1. tree work_directory
 
-![1625819050120](F:\BaiduNetdiskWorkspace\Panlineal申请专利\gsvcp\README.assets\1625819050120.png)
+├── fq_dir
+│   ├── L32-DSW42950-S_L8_1.fq.gz
+│   ├── L32-DSW42950-S_L8_2.fq.gz
+│   ├── P109-DSW43014-S_L2_1.fq.gz
+│   ├── P109-DSW43014-S_L2_2.fq.gz
+│   ├── P149-DSW43053-S_L2_1.fq.gz
+│   ├── P149-DSW43053-S_L2_2.fq.gz
+│   ├── P35-DSW43287-S_L6_1.fq.gz
+│   └── P35-DSW43287-S_L6_2.fq.gz
+├── genome_gff_dir
+│   ├── 02428.fa
+│   ├── 02428.gff
+│   ├── DHX2.fa
+│   ├── DHX2.fa.fai
+│   ├── DHX2.gff
+│   ├── MSU.fa
+│   └── MSU.gff
+├── genome_list
 
 2. cat genome_list
 
-   ![1625819141451](F:\BaiduNetdiskWorkspace\Panlineal申请专利\gsvcp\README.assets\1625819141451.png)
+  MSU.fa
+  DHX2.fa
+  02428.fa
 
    
 
