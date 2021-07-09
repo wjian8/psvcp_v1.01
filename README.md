@@ -100,7 +100,7 @@ The genome_list is a text file including the genome name. First line is the refe
 
 The fq_dir is a directory which has Next generation sequencing data (fq.gz file).
 
-population_hmp is the prefix of a genotype file which is hapmap format.
+The population_hmp is the prefix of a genotype file which is hapmap format.
 
 
 
