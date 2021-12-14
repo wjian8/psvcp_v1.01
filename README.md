@@ -34,7 +34,7 @@ python3 (https://www.python.org/) and packages:
 Make sure the Dependencies was installed correctly. In the Linux bash shell environment, you can run "nucmer -h" for testing MUMmer installation, run "python3 -h" for testing python3 installation, run "Assemblytics " for testing Assemblytics installation, run "Rscript" for testing R installation, run "bwa" for testing bwa installation, run "picard" for testing picard installation, run "samtools" for testing samtools installation, run "mosdepth -h" for testing mosdepth installation. In the R environment, you can run "library(hash)" for checking R hash package, etc.. In the python environment, you can run "import re" for checking python re package, etc.
 
 Download the psvcp toolbox from github:
-`git clone git@github.com:wjian8/psvcp.git`
+`git clone git@github.com:wjian8/psvcp_v1.01.git`
 
 
 Alternatively, you also could obtain the toolbox in the psvcp website and uncompress the psvcp toolbox package:
