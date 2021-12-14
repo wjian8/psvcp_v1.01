@@ -127,7 +127,7 @@ The pipeline can be split into four parts.
 
 4. The last part is for GWAS. GWAS will perform with GAPIT.
 
-​    `python3 $path_of_the_pipeline/4GWAS_gapit.py phenotype.txt genotype.hmp.txt`
+   `python3 $path_of_the_pipeline/4GWAS_gapit.py phenotype.txt genotype.hmp.txt`
 
 ---
 
