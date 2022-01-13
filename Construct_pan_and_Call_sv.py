@@ -13,7 +13,7 @@ my_parser.add_argument('-t', dest='thread',type=int,default='12')
 my_parser.add_argument('-fqd', dest='fq_dir',required=True,help='fq.gz files are in the directory') #
 my_parser.add_argument('-p', dest='fq_postfix',default='_1.fq.gz',help="Only fq1 file postfix, like _1.fq.gz or .R1.fastq.gz") #
 my_parser.add_argument('-br', dest='bam_dir',default='bam_dir')
-my_parser.add_argument('-bpf', dest='bam_postfix',default='_mapQ20.bam')
+my_parser.add_argument('-bpf', dest='bam_postfix',default='.mapQ20.bam')
 my_parser.add_argument('-d', dest='depth_threshold',default='5')
 my_parser.add_argument('-g', dest='min_gap_threshold',default='50')
 my_parser.add_argument('-w', dest='mosdepth_window',default='20')
@@ -37,7 +37,7 @@ for num,value in enumerate(genome_list):
         os.system('ln %s/%s pan_dir_result/ref0.gff'% (genome_dir,re.sub(re.escape('.fa'),'.gff',value.strip())))
     else:
         round=num
-        os.system("bash {5}/{0} pan_dir_result/{1} {4}/{2} > job{3}.sh && bash job{3}.sh && rm -f job{3}.sh".format("1Genome_construct_Pangenome.sh",ref+'.fa',value.strip(),num,genome_dir,script_dir))
+        os.system("bash {5}/{0} pan_dir_result/{1} {4}/{2} > job{3}.sh && bash job{3}.sh && rm -f job{3}.sh".format("Refgenome_update_by_quest.sh",ref+'.fa',value.strip(),num,genome_dir,script_dir))
         os.system('ln pan_dir_result/%s pan_dir_result/ref%s.fa'%(ref+value.strip(),num))  #ref0DHX2.fa ref1.fa
         os.system('ln pan_dir_result/%s pan_dir_result/ref%s.gff'%(re.sub(re.escape('.fa'),'.gff',ref+value.strip()),num))
         os.system('ln pan_dir_result/%s pan_dir_result/ref%s.pav.gff'%(re.sub(re.escape('.fa'),'.pav.gff',ref+value.strip()),num))

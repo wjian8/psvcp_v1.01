@@ -18,7 +18,7 @@ my_parser.add_argument('-m', dest='maf',default='0.05')
 my_parser.add_argument('-o', dest='output_prefix',required=True)
 args = my_parser.parse_args()
 bam_sample_names = glob.glob(args.bam_dir+"/*%s"%args.bam_postfix)
-mosdepth_output_dir='mosdepth_output_dir'
+mosdepth_output_dir=args.bam_dir+'_mosdepth_dir'
 if os.path.exists(mosdepth_output_dir):
     os.system('rm -rf '+mosdepth_output_dir)
     os.makedirs(mosdepth_output_dir)
@@ -31,5 +31,6 @@ for bam_sample in bam_sample_prefixs:
     os.system("python3 {4}/structure_variation_calling_script/1depth_call_pav.py {0}/{1}.regions.bed.gz {0}/{1}{2}depth_{3}bp.txt {2} {3}".format(mosdepth_output_dir,bam_sample,args.depth_threshold,args.min_gap_threshold,script_dir))
 
 os.system('Rscript {5}/structure_variation_calling_script/2merge_samples_pav_to_population.r {0} {1}depth_{2}bp.txt {3} {4}'.format(mosdepth_output_dir,args.depth_threshold,args.min_gap_threshold,args.output_prefix,args.mosdepth_thread,script_dir))
-os.system('python3 {2}/structure_variation_calling_script/3pav_genotype_to_hmp.py {0} {1}'.format(args.output_prefix,args.maf,script_dir))
+os.system('python3 {1}/structure_variation_calling_script/3.1pav_genotype_to_hmp.py {0}'.format(args.output_prefix,script_dir))
+os.system('python3 {2}/structure_variation_calling_script/3.2hapmap_screen_maf.py {0}.hmp {1}'.format(args.output_prefix,args.maf,script_dir))
 #os.system('rm -f {0} {0}.maf'.format(args.output_prefix))
