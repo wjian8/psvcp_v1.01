@@ -10,7 +10,7 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 * Structure Variation (Presence/Absence variation) detecting based on Next-generation sequencing data and Linear pan-genome
 
 * Genotyping of PAV at population level based on the samples' PAVs
- 
+
 
 
 * ![1642075445921](README.assets\diagram of workflow.png)
@@ -96,7 +96,7 @@ Here are the folders and files structure of the two directories :
 
 The genome_gff_dir_example is a directory that contains different genome assemblies (different genome.fa files) and genome annotations (genome_annotation.gff files). The fq_dir_example is a directory that contains the Next generation sequencing data (fq.gz file). 
 
-The input file named genome_list is a text file including the genome name. It determines the order of whole genome comparison. The first line[[RH1\]](#_msocom_1)  of genome_list fle is the ref0 genome name, the second line is the first genome assemblies which will be compared to the ref0 genome. The ref0 genome will be updated to ref1 genome by adding segments not present in ref0 genome into ref0 genome. The third line is the second genome assemblies which will be compared to the ref1 genome. and so on. In the example, MSU_0-2M.fa is ref0 genome. We perform whole genome comparison between MSU_0-2M.fa (ref0) and Lemont_0-2M.fa, the updated genome will be named ref1 genome. Next, whole genome comparison between ref1 genome and CN1_0-2M.fa will be performed. The second round updated genome will be named ref2 genome. Then we will perform whole genome comparison between ref2 genome and R498_0-2M.fa. And so on. 
+The input file named genome_list is a text file including the genome name. It determines the order of whole genome comparison. The first line of genome_list fle is the ref0 genome name, the second line is the first genome assemblies which will be compared to the ref0 genome. The ref0 genome will be updated to ref1 genome by adding segments not present in ref0 genome into ref0 genome. The third line is the second genome assemblies which will be compared to the ref1 genome. and so on. In the example, MSU_0-2M.fa is ref0 genome. We perform whole genome comparison between MSU_0-2M.fa (ref0) and Lemont_0-2M.fa, the updated genome will be named ref1 genome. Next, whole genome comparison between ref1 genome and CN1_0-2M.fa will be performed. The second round updated genome will be named ref2 genome. Then we will perform whole genome comparison between ref2 genome and R498_0-2M.fa. And so on. 
 
 Here we show the content of the file:
 
@@ -152,54 +152,55 @@ The pipeline can be split into four parts.
 
 1. If you just want to construct a linear pan-genome by two genome.
 
-   ```
+```
    python3 $path_of_the_pipeline/psvcp.py \
      RefGenomeUpdateByQuest \
      ref.fa \
      query.fa
-   ```
+```
 
    or you want to construct pan-genome by several (more than 2) genome.
 
-   ```
+```
    python3 $path_of_the_pipeline/psvcp.py \
      GenomeConstructPangenome \
      genome_example_dir \
      genome_list
-   ```
+```
 
    
 
 2. It's easy to use bwa to map Next generation sequencing data of one sample against a large reference genome.
 
-   ```
+```
    python3 $path_of_the_pipeline/psvcp.py \
      MapFqToPan \
      -t 4 \
      -fqd fq_dir \
      -r ReferenceFile \
      -br bam_dir
-   ```
+```
 
    Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
 
 3. Based on the depth information from every bam file. The PAV genotype will be achieved by:
 
-   ```
+```
    python3 $path_of_the_pipeline/psvcp.py \
      CallSVtoGenotype \
      -br bam_dir \
      -o hmp_prefix
-   ```
+```
 
-4. The last part is for GWAS. GWAS will perform with GAPIT.
+4. The last part is for GWAS. 
 
-    ```
+```
 python3 $path_of_the_pipeline/psvcp.py \
       GWASgapit \
       phenotype.txt \
       genotype.hmp.txt
-    ```
+```
+GWAS will perform with GAPIT.
 
 ---
 
