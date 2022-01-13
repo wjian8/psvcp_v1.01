@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
-# Usage: python3  $0 phonetype.txt genotype.text
+# Usage: python3  $0 phonetype.txt genotype.txt
 # Author: Jian Wang
 # Email: wjian@gdaas.cn
 

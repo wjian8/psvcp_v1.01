@@ -4,7 +4,7 @@
 # Author: Jian Wang
 # Email: wjian@gdaas.cn
 
-import os,  glob, time, argparse, threading, re
+import os, sys, glob, time, argparse, threading, re
 
 my_parser = argparse.ArgumentParser()
 my_parser.add_argument('-t', dest='thread',type=int,default='4') 
@@ -82,8 +82,8 @@ def bwa(part_sample_prefixectory):
         os.system('samtools index {0}/{1}{2} '.format(output_bam_dir,sample_prefix,args.bam_postfix))
         print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))+'samtools_BuildBamIndex programming finished***In threading***'+sample_prefix, file=TimeTable)
         TimeTable.flush()
-        #os.system('rm {0}/{1}_sorted_add_dedup.bam'.format(output_bam_dir,sample_prefix))
-        #os.system('rm {0}/{1}_sorted_add_dedup.metrics'.format(output_bam_dir,sample_prefix))
+        os.system('rm {0}/{1}_sorted_add_dedup.bam'.format(output_bam_dir,sample_prefix))
+        os.system('rm {0}/{1}_sorted_add_dedup.metrics'.format(output_bam_dir,sample_prefix))
 
 mult(bwa, sample_prefixs, n=args.thread)
 TimeTable.close()

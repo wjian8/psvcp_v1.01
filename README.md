@@ -6,10 +6,15 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 
 ​    The pipeline  is composed of three main functions:
 * Linear pan-genome construction using different assembled genomes.
+
 * Structure Variation (Presence/Absence variation) detecting based on Next-generation sequencing data and Linear pan-genome
+
 * Genotyping of PAV at population level based on the samples' PAVs
- ![1642075445921](README.assets\diagram of workflow.png)
-Fig 1 Scheme diagram of PSVCP pipeline. a. construction of linearized pan-genome
+ 
+
+
+* ![1642075445921](README.assets\diagram of workflow.png)
+ Fig 1 Scheme diagram of PSVCP pipeline. a. construction of linearized pan-genome
 b. PAV was re-calling by sequencing coverage calculation. c. population PAV genotype calling
 
 
@@ -42,7 +47,9 @@ Download the psvcp toolbox from github: git clone git@github.com:wjian8/psvcp_v1
 
 Alternatively, you also could obtain the toolbox in the psvcp website and uncompress the psvcp toolbox package:
 
-`tar -zxvf psvcp-v**.tar.gz`
+```
+tar -zxvf psvcp-v**.tar.gz
+```
 
 ### 3. Main analysis procedures
 
@@ -94,7 +101,7 @@ The input file named genome_list is a text file including the genome name. It de
 Here we show the content of the file:
 
 ```
-cat genome_list 
+`cat genome_list`
 MSU_0-2M.fa
 Lemont_0-2M.fa
 CN1_0-2M.fa
@@ -129,11 +136,12 @@ Available commands:
 The pipeline can be used like this:
 
 ```
-python3 $path_of_the_pipeline/psvcp.py ConstructPanAndCallPAV \
- genome_gff_dir \
- genome_list \
- -fqd fq_dir \
- -o population_hmp
+python3 $path_of_the_pipeline/psvcp.py \
+  ConstructPanAndCallPAV \
+  genome_gff_dir \
+  genome_list \
+  -fqd fq_dir \
+  -o population_hmp
 ```
 
 the ouput file population_hmp is the prefix of a genotype file which is hapmap format.
@@ -145,13 +153,19 @@ The pipeline can be split into four parts.
 1. If you just want to construct a linear pan-genome by two genome.
 
    ```
-   python3 $path_of_the_pipeline/psvcp.py RefGenomeUpdateByQuest ref.fa query.fa
+   python3 $path_of_the_pipeline/psvcp.py \
+     RefGenomeUpdateByQuest \
+     ref.fa \
+     query.fa
    ```
 
    or you want to construct pan-genome by several (more than 2) genome.
 
    ```
-   python3 $path_of_the_pipeline/psvcp.py  GenomeConstructPangenome genome_example_dir genome_list
+   python3 $path_of_the_pipeline/psvcp.py \
+     GenomeConstructPangenome \
+     genome_example_dir \
+     genome_list
    ```
 
    
@@ -159,7 +173,12 @@ The pipeline can be split into four parts.
 2. It's easy to use bwa to map Next generation sequencing data of one sample against a large reference genome.
 
    ```
-   python3 $path_of_the_pipeline/psvcp.py MapFqToPan -t 4 -fqd fq_dir -r ReferenceFile -br bam_dir
+   python3 $path_of_the_pipeline/psvcp.py \
+     MapFqToPan \
+     -t 4 \
+     -fqd fq_dir \
+     -r ReferenceFile \
+     -br bam_dir
    ```
 
    Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
@@ -167,13 +186,19 @@ The pipeline can be split into four parts.
 3. Based on the depth information from every bam file. The PAV genotype will be achieved by:
 
    ```
-   python3 $path_of_the_pipeline/psvcp.py CallSVtoGenotype -br bam_dir -o hmp_prefix
+   python3 $path_of_the_pipeline/psvcp.py \
+     CallSVtoGenotype \
+     -br bam_dir \
+     -o hmp_prefix
    ```
 
 4. The last part is for GWAS. GWAS will perform with GAPIT.
 
     ```
-python3 $path_of_the_pipeline/psvcp.py GWASgapit phenotype.txt genotype.hmp.txt
+python3 $path_of_the_pipeline/psvcp.py \
+      GWASgapit \
+      phenotype.txt \
+      genotype.hmp.txt
     ```
 
 ---
@@ -181,7 +206,11 @@ python3 $path_of_the_pipeline/psvcp.py GWASgapit phenotype.txt genotype.hmp.txt
 If you want to check the insertion sequence from one assembled genome and the insertion sequence in the pan genome. Just run the python script:
 
 ```
-python3 $path_of_the_pipeline/psvcp.py CheckPAV pan.fa genome_example_dir/R498_0-2M.fa pan.pav.gff
+python3 $path_of_the_pipeline/psvcp.py \
+  CheckPAV \
+  pan.fa \
+  genome_example_dir/R498_0-2M.fa \
+  pan.pav.gff
 ```
 
 
@@ -190,7 +219,11 @@ The output will show the PAV sequece transport from R498_0-2M.fa to pan.fa
 If you want to check the pan gene annotation.
 
 ```
-gffread pan.gff -g pan.fa -y pan.pep.fa # pan protain sequence
+gffread pan.gff -g pan.fa -y pan.pep.fa 
+# pan protain sequence
+```
+
+```
 python3 $path_of_the_pipeline/psvcp.py CheckGff  pan.pep.fa genome_example_dir/MSU_0-2M.pep.fa 
 ```
 
