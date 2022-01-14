@@ -42,8 +42,11 @@ Python Version: 3.7.9  (https://www.python.org/) and packages:
 
 Make sure all the Dependencies were installed correctly before running the psvcp toolbox.
 
-Download the psvcp toolbox from github: git clone git@github.com:wjian8/psvcp_v1.01.git
+Download the psvcp toolbox from github: 
 
+```
+git clone git@github.com:wjian8/psvcp_v1.01.git
+```
 
 Alternatively, you also could obtain the toolbox in the psvcp website and uncompress the psvcp toolbox package:
 
