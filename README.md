@@ -13,9 +13,9 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 
 
 
-* ![1642075445921](README.assets\diagram of workflow.png)
- Fig 1 Scheme diagram of PSVCP pipeline. a. construction of linearized pan-genome
-b. PAV was re-calling by sequencing coverage calculation. c. population PAV genotype calling
+* ![workflow](https://github.com/wjian8/psvcp_v1.01/tree/main/images/DiagramOfWworkflow.png)
+* Fig 1 Scheme diagram of PSVCP pipeline. a. construction of linearized pan-genome
+ b. PAV was re-calling by sequencing coverage calculation. c. population PAV genotype calling
 
 
 ### 2. Installation
@@ -42,11 +42,8 @@ Python Version: 3.7.9  (https://www.python.org/) and packages:
 
 Make sure all the Dependencies were installed correctly before running the psvcp toolbox.
 
-Download the psvcp toolbox from github: 
+Download the psvcp toolbox from github: git clone git@github.com:wjian8/psvcp_v1.01.git
 
-```
-git clone git@github.com:wjian8/psvcp_v1.01.git
-```
 
 Alternatively, you also could obtain the toolbox in the psvcp website and uncompress the psvcp toolbox package:
 
