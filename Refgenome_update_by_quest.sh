@@ -37,8 +37,8 @@ echo "if [ $ref_fa == 'ref0.fa' ];
 then 
 ln ${ref_genome_dir}/${ref_fa%.fa}${query_fa%.fa}.bed3.pav.gff ${ref_genome_dir}/${ref_fa%.fa}${query_fa%.fa}.pav.gff;
 else 
-Rscript ${script_dir}/construct_pan_script/8gff_update_by_bed2info_parLapply.R ${ref_genome_dir}/${ref_fa%.fa}.pav.gff ${ref_genome_dir}/${prefix_base}/${prefix_base}.ins.more_50.bed2 ${ref_genome_dir}/${ref_fa%.fa}.update1.pav.gff;
-cat ${ref_genome_dir}/${ref_fa%.fa}${query_fa%.fa}.bed3.pav.gff ${ref_genome_dir}/${ref_fa%.fa}.update1.pav.gff > ${ref_genome_dir}/${ref_fa%.fa}${query_fa%.fa}.pav.gff;
+Rscript ${script_dir}/construct_pan_script/8.2pav_gff_update_by_bed2info_parLapply.R ${ref_genome_dir}/${ref_fa%.fa}.pav.gff ${ref_genome_dir}/${prefix_base}/${prefix_base}.ins.more_50.bed2 ${ref_genome_dir}/${ref_fa%.fa}.update1.pav.gff;
+cat ${ref_genome_dir}/${ref_fa%.fa}.update1.pav.gff ${ref_genome_dir}/${ref_fa%.fa}${query_fa%.fa}.bed3.pav.gff > ${ref_genome_dir}/${ref_fa%.fa}${query_fa%.fa}.pav.gff;
 fi"
 
 echo "Rscript ${script_dir}/construct_pan_script/8gff_update_by_bed2info_parLapply.R ${ref_genome_dir}/${ref_fa%.fa}.gff ${ref_genome_dir}/${prefix_base}/${prefix_base}.ins.more_50.bed2 ${ref_genome_dir}/${ref_fa%.fa}.update1.gff"
