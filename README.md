@@ -191,14 +191,14 @@ sort -nk 1.4 -nk 2 PanGenomeInversion.bed > PanGenomeInversionsorted.bed
 3. We got the union of the inversions. 
 
 ```
-python3  $path_of_the_pipeline/translocatio_and_inversion/3InversionBedunique.py PanGenomeInversionsorted.bed
+python3  $path_of_the_pipeline/translocation_and_inversion/3InversionBedunique.py PanGenomeInversionsorted.bed
 ```
 The output was "PanGenomeInversionsorted.bed_unique"
 
 4. We further genotyped each potential inversion in the pangenome using the short-read sequencing data of accessions by the same method used for translocation genotyping (examining the mapping coverage of the 39 bp region with breakpoints in the centre). 
 
 ```
-python3 $path_of_the_pipeline/translocatio_and_inversion/4InversionBedSamtoolsGenotype1.01.py -i PanGenomeInversionsorted.bed_unique -br bam_dir -o PopulationInversionGenotype.txt
+python3 $path_of_the_pipeline/translocation_and_inversion/4InversionBedSamtoolsGenotype1.01.py -i PanGenomeInversionsorted.bed_unique -br bam_dir -o PopulationInversionGenotype.txt
 ```
 We counted the number of the reads spanning a 39 bp region with a conjunction point at the centre. If the mapping coverage of inversion's breakpoint was less than 5x, we defined the genotype of the breakpoint as absence ("A"). Otherwise, we defined the genotype (>=5x) as presence ("C"). "A" means the inversion and "C" means it is synthetic with our pangenome.
 
