@@ -156,12 +156,12 @@ blastn -task blastn -query pan_pav.fa -db  pan.fa -out pan_pav.fa.blasn.perident
 ```
 3. The translocations could be filter from the BLAST result .
 ```
-python3  $path_of_the_pipeline/translocatio_and_inversion/1Translocation_filter_from_blast.py pan_pav.fa.blasn.peridentity95long1k.txt
+python3  $path_of_the_pipeline/translocation_and_inversion/1Translocation_filter_from_blast.py pan_pav.fa.blasn.peridentity95long1k.txt
 ```
 PAV sequences larger than 1kb and matched to 2 or more sequences on pangenome positions with sequences similarity larger than 95% were identified as potential translocations. The positions of the translocations were recorded. The output file "pan_pav.fa.blasn.peridentity95long1k.txt_Translocation" contains all the tranlocations.
 4. The population translocations were genotyped by checking the read mapping around translocations' breakpoints, which reads spanning a 39 bp region with a conjunction point at the center. 
 ```
-python3 $path_of_the_pipeline/translocatio_and_inversion/2TranslocationBlastSamtoolsGenotype1.02.py -i pan_pav.fa.blasn.peridentity95long1k.txt_Translocation -br bam_dir -o PopulationTranslocationGenotype.txt
+python3 $path_of_the_pipeline/translocation_and_inversion/2TranslocationBlastSamtoolsGenotype1.02.py -i pan_pav.fa.blasn.peridentity95long1k.txt_Translocation -br bam_dir -o PopulationTranslocationGenotype.txt
 ```
 We counted the number of the reads spanning a 39 bp region with a conjunction point at the centre. If the mapping coverage of translocation's breakpoint was less than 5x, we defined the genotype of the breakpoint as absence ("A"). Otherwise, we defined the genotype (>=5x) as presence ("C").
 
