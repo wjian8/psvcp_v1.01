@@ -52,6 +52,8 @@ For the Users can use the pipeline easily, there are example data for testing. T
 Here we show the tree of the two directory :
 
 ```tree $work_directory```
+
+```
  genome_gff_dir_example
   ├── CN1_0-2M.fa
   ├── CN1_0-2M.fa.fai
@@ -81,6 +83,7 @@ Here we show the tree of the two directory :
   ├── IRRI2K_1388_2.fq.gz
   ├── IRRI2K_1390_1.fq.gz
   ├── IRRI2K_1390_2.fq.gz
+```
 
 The genome_gff_dir_example is a directory which has the some genome.fa files and genome_annotation.gff files.
 The fq_dir_example is a directory which has Next generation sequencing data (fq.gz file). 
