@@ -4,34 +4,28 @@
 
 We have developed a user-friendly pangenome construction and PAV genotype calling pipeline.
 
-​    The pipeline  is composed of three main functions:
-* Linear pan-genome construction using different assembled genomes.
-
-* Structure Variation (Presence/Absence variation) detecting based on Next-generation sequencing data and Linear pan-genome
-
-* Genotyping of PAV at population level based on the samples' PAVs
-
-
-
-* ![workflow](https://github.com/wjian8/psvcp_v1.01/tree/main/images/DiagramOfWworkflow.png)
-* Fig 1 Scheme diagram of PSVCP pipeline. a. construction of linearized pan-genome
- b. PAV was re-calling by sequencing coverage calculation. c. population PAV genotype calling
-
+​    The pipeline  is composed of:
+* Linear pan-genome construction based on some assembled genomes.
+* Structure Variation (Presence/Absence variation) detecting based on Next generation sequencing data and Linear pan-genome
+* Population genotype of PAV calling based on the samples' PAV
 
 ### 2. Installation
 
 #### Dependencies
-MUMMER Version: 4.0.0rc1(https://github.com/mummer4/mummer)
+MUMMER (https://github.com/mummer4/mummer)
 Assemblytics (https://github.com/marianattestad/assemblytics)
-BWA Version: 0.7.17-r1198-dirty (http://bio-bwa.sourceforge.net/)
+BWA (http://bio-bwa.sourceforge.net/)
 Picard (https://github.com/broadinstitute/picard)
-Samtools Version: 1.9-49-gb321ed1(https://github.com/samtools/samtools)
-bedtools Version: 2.29.2 (https://github.com/arq5x/bedtools2)
-R  Version: 4.0.3 (https://www.r-project.org/) and packages: 
+Samtools (https://github.com/samtools/samtools)
+bedtools (https://github.com/arq5x/bedtools2)
+seqkit(https://bioinf.shenwei.me/seqkit/)
+blastn(https://blast.ncbi.nlm.nih.gov/Blast.cgi)
+
+R 4.0.3 or later (https://www.r-project.org/) and packages: 
     -hash
     -parallel
     -snowfall
-Python Version: 3.7.9  (https://www.python.org/) and packages:
+python3 (https://www.python.org/) and packages:
     -pandas
     -gzip
     -argparse
@@ -40,27 +34,24 @@ Python Version: 3.7.9  (https://www.python.org/) and packages:
 
 #### Installation procedures
 
-Make sure all the Dependencies were installed correctly before running the psvcp toolbox.
+Make sure the Dependencies was installed correctly. In the Linux bash shell environment, you can run "nucmer -h" for testing MUMmer installation, run "python3 -h" for testing python3 installation, run "Assemblytics " for testing Assemblytics installation, run "Rscript" for testing R installation, run "bwa" for testing bwa installation, run "picard" for testing picard installation, run "samtools" for testing samtools installation, run "mosdepth -h" for testing mosdepth installation. In the R environment, you can run "library(hash)" for checking R hash package, etc.. In the python environment, you can run "import re" for checking python re package, etc.
 
-Download the psvcp toolbox from github: git clone git@github.com:wjian8/psvcp_v1.01.git
+Download the psvcp toolbox from github:
 
 
 Alternatively, you also could obtain the toolbox in the psvcp website and uncompress the psvcp toolbox package:
 
-```
-tar -zxvf psvcp-v**.tar.gz
-```
+```tar -zxvf psvcp-v**.tar.gz```
 
 ### 3. Main analysis procedures
 
 #### Example data
 
-Here we provided some example data and a short tutorial to guide the users to use our pipeline. The example data includes two directories and one file in the working directory.
+For the Users can use the pipeline easily, there are example data for testing. The example data including two directory and one file in the work directory.
 
-Here are the folders and files structure of the two directories :
+Here we show the tree of the two directory :
 
-```
-`tree $work_directory`
+```tree $work_directory```
  genome_gff_dir_example
   ├── CN1_0-2M.fa
   ├── CN1_0-2M.fa.fai
@@ -90,146 +81,154 @@ Here are the folders and files structure of the two directories :
   ├── IRRI2K_1388_2.fq.gz
   ├── IRRI2K_1390_1.fq.gz
   ├── IRRI2K_1390_2.fq.gz
-```
 
+The genome_gff_dir_example is a directory which has the some genome.fa files and genome_annotation.gff files.
+The fq_dir_example is a directory which has Next generation sequencing data (fq.gz file). 
+The one input file named genome_list is a text file including the genome name. First line is the reference genome, the second line is the first genome which will be compared to reference genome. The third line is the second genome which will be compared to the first linear pan. and so on. Here we show the content of the file:
 
-
-The genome_gff_dir_example is a directory that contains different genome assemblies (different genome.fa files) and genome annotations (genome_annotation.gff files). The fq_dir_example is a directory that contains the Next generation sequencing data (fq.gz file). 
-
-The input file named genome_list is a text file including the genome name. It determines the order of whole genome comparison. The first line of genome_list fle is the ref0 genome name, the second line is the first genome assemblies which will be compared to the ref0 genome. The ref0 genome will be updated to ref1 genome by adding segments not present in ref0 genome into ref0 genome. The third line is the second genome assemblies which will be compared to the ref1 genome. and so on. In the example, MSU_0-2M.fa is ref0 genome. We perform whole genome comparison between MSU_0-2M.fa (ref0) and Lemont_0-2M.fa, the updated genome will be named ref1 genome. Next, whole genome comparison between ref1 genome and CN1_0-2M.fa will be performed. The second round updated genome will be named ref2 genome. Then we will perform whole genome comparison between ref2 genome and R498_0-2M.fa. And so on. 
-
-Here we show the content of the file:
-
-```
-`cat genome_list`
+```cat genome_list```
 MSU_0-2M.fa
 Lemont_0-2M.fa
 CN1_0-2M.fa
 R498_0-2M.fa
 FH838_0-2M.fa
-```
-
-
 
 #### Usage
-
-```
-Available commands:
-
-  RefGenomeUpdateByQuest    # Whole genome comparison between refGenome and questGenome, update refGenome by PAV
-
-  GenomeConstructPangenome      # Whole genome comparison between genomes and the reference genome, pan-genome construction
-
-  MapFqToPan # Map short read resequencing data to the pan-genome and detect the PAVs
-
-  CallSVtoGenotype      # Calling population PAV genotype based on all samples’ PAVs
-
-  GWASgapit    
-
-  ConstructPanAndCallPAV # One step for Pan-genome Construction and Population Structure Variation Calling
-
-  CheckGff # Check the pan gene annotation by protein sequence
-
-  CheckPAV      # Check the pan gene annotation by PAV sequence
-```
 
 The pipeline can be used like this:
 
 ```
-python3 $path_of_the_pipeline/psvcp.py \
-  ConstructPanAndCallPAV \
-  genome_gff_dir \
-  genome_list \
-  -fqd fq_dir \
-  -o population_hmp
+python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py 
+    genome_gff_dir 
+    genome_list 
+    -fqd fq_dir 
+    -o population_hmp
 ```
 
 the ouput file population_hmp is the prefix of a genotype file which is hapmap format.
 
 ---
 
-The pipeline can be split into four parts.
+The pipeline can be split into several parts.
 
 1. If you just want to construct a linear pan-genome by two genome.
 
-```
-   python3 $path_of_the_pipeline/psvcp.py \
-     RefGenomeUpdateByQuest \
-     ref.fa \
-     query.fa
-```
+   ```
+   bash $path_of_the_pipeline/1Genome_construct_Pangenome.sh ref.fa query.fa > job.sh && bash job.sh
+   ```
 
    or you want to construct pan-genome by several (more than 2) genome.
 
-```
-   python3 $path_of_the_pipeline/psvcp.py \
-     GenomeConstructPangenome \
-     genome_example_dir \
-     genome_list
-```
-
-   
+   ```
+   python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py genome_example_dir genome_list ```
+   ```
 
 2. It's easy to use bwa to map Next generation sequencing data of one sample against a large reference genome.
 
-```
-   python3 $path_of_the_pipeline/psvcp.py \
-     MapFqToPan \
-     -t 4 \
-     -fqd fq_dir \
-     -r ReferenceFile \
-     -br bam_dir
-```
+   ```
+   python3  $path_of_the_pipeline/2Map_fq_to_Pan.py -t 4 -fqd fq_dir -r ReferenceFile -br bam_dir
+   ```
 
    Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
 
 3. Based on the depth information from every bam file. The PAV genotype will be achieved by:
 
-```
-   python3 $path_of_the_pipeline/psvcp.py \
-     CallSVtoGenotype \
-     -br bam_dir \
-     -o hmp_prefix
-```
+   ```
+   python3  $path_of_the_pipeline/3Call_sv_to_genotype.py -br bam_dir -o hmp_prefix
+   ```
 
-4. The last part is for GWAS. 
+4. The last part is for GWAS. GWAS will perform with GAPIT.
 
-```
-python3 $path_of_the_pipeline/psvcp.py \
-      GWASgapit \
-      phenotype.txt \
-      genotype.hmp.txt
-```
-GWAS will perform with GAPIT.
+   ```
+   python3 $path_of_the_pipeline/4GWAS_gapit.py phenotype.txt genotype.hmp.txt
+   ```
 
 ---
+For the Translocation
+
+1. It's easy to use seqkit to get the all PAV sequences with pan sequences and PAV annonotation.
+```
+seqkit subseq --gtf  pan.pav.sorted.gff -o pan_pav.fa pan.fa
+```
+2. The PAV sequences were aligned against the reference genome using BLASTN.
+```
+blastn -task blastn -query pan_pav.fa -db  pan.fa -out pan_pav.fa.blasn.peridentity95long1k.txt -outfmt 6 -num_threads 16 -evalue 1e-10  -word_size 1000 -perc_identity 95
+```
+3. The translocations could be filter from the BLAST result .
+```
+python3  $path_of_the_pipeline/translocatio_and_inversion/1Translocation_filter_from_blast.py pan_pav.fa.blasn.peridentity95long1k.txt
+```
+PAV sequences larger than 1kb and matched to 2 or more sequences on pangenome positions with sequences similarity larger than 95% were identified as potential translocations. The positions of the translocations were recorded. The output file "pan_pav.fa.blasn.peridentity95long1k.txt_Translocation" contains all the tranlocations.
+4. The population translocations were genotyped by checking the read mapping around translocations' breakpoints, which reads spanning a 39 bp region with a conjunction point at the center. 
+```
+python3 $path_of_the_pipeline/translocatio_and_inversion/2TranslocationBlastSamtoolsGenotype1.02.py -i pan_pav.fa.blasn.peridentity95long1k.txt_Translocation -br bam_dir -o PopulationTranslocationGenotype.txt
+```
+We counted the number of the reads spanning a 39 bp region with a conjunction point at the centre. If the mapping coverage of translocation's breakpoint was less than 5x, we defined the genotype of the breakpoint as absence ("A"). Otherwise, we defined the genotype (>=5x) as presence ("C").
+
+---
+For the Inversion
+
+We have updated the Assemblytics for inversions detecting. You can download the Assemblytics_between_alignments.pl file and overwrite the old one of the Assemblitics V1.2.1. (Assemblytics-master/scripts/Assemblytics_between_alignments.pl).
+
+1. We identified inversions by comparing each genome used for pangenome construction with the pangenome using MUMmer v4.0.0 and Assemblitics V1.2.1. 
+Here is the example. We MUMmer CG14 genome against pangenome.
+```
+mkdir $workplace/pan_CG14;mkdir $workplace/pan_CG14/temp;
+
+nucmer -t 32  --maxgap 500 --mincluster 1000 --diagdiff 20 $workplace/pan.fa $workplace/CG14.fa --prefix $workplace/pan_CG14/pan_CG14
+
+Assemblytics $workplace/pan_CG14/pan_CG14.delta $workplace/pan_CG14/pan_CG14.bed 1000 50 10000000
+```
+
+2. We used "grep" and "sort" to get the Inversion information. 
+
+```
+for i in  `cat genome_list`; do  grep 'Inversion'  /workplace/${i%.fa}/pan_${i%.fa}/pan_${i%.fa}.bed.variants_between_alignments.bed >> PanGenomeInversion.bed  ;done
+
+sort -nk 1.4 -nk 2 PanGenomeInversion.bed > PanGenomeInversionsorted.bed
+```
+
+3. We got the union of the inversions. 
+
+```
+python3  $path_of_the_pipeline/translocatio_and_inversion/3InversionBedunique.py PanGenomeInversionsorted.bed
+```
+The output was "PanGenomeInversionsorted.bed_unique"
+
+4. We further genotyped each potential inversion in the pangenome using the short-read sequencing data of accessions by the same method used for translocation genotyping (examining the mapping coverage of the 39 bp region with breakpoints in the centre). 
+
+```
+python3 $path_of_the_pipeline/translocatio_and_inversion/4InversionBedSamtoolsGenotype1.01.py -i PanGenomeInversionsorted.bed_unique -br bam_dir -o PopulationInversionGenotype.txt
+```
+We counted the number of the reads spanning a 39 bp region with a conjunction point at the centre. If the mapping coverage of inversion's breakpoint was less than 5x, we defined the genotype of the breakpoint as absence ("A"). Otherwise, we defined the genotype (>=5x) as presence ("C"). "A" means the inversion and "C" means it is synthetic with our pangenome.
+
+
+
+---
+
+
 
 If you want to check the insertion sequence from one assembled genome and the insertion sequence in the pan genome. Just run the python script:
 
 ```
-python3 $path_of_the_pipeline/psvcp.py \
-  CheckPAV \
-  pan.fa \
-  genome_example_dir/R498_0-2M.fa \
-  pan.pav.gff
+python3 $path_of_the_pipeline/Check_pav.py pan.fa genome_example_dir/R498_0-2M.fa  pan.pav.gff
 ```
-
 
 The output will show the PAV sequece transport from R498_0-2M.fa to pan.fa
 
 If you want to check the pan gene annotation.
-
 ```
-gffread pan.gff -g pan.fa -y pan.pep.fa 
-# pan protain sequence
+gffread pan.gff -g pan.fa -y pan.pep.fa    # pan protain sequence
 ```
 
 ```
-python3 $path_of_the_pipeline/psvcp.py CheckGff  pan.pep.fa genome_example_dir/MSU_0-2M.pep.fa 
+python3 $path_of_the_pipeline/Check_gff.py pan.pep.fa genome_example_dir/MSU_0-2M.pep.fa
 ```
-
-
 The output will show the number of proteins ID in MSU_0-2M.pep.fa and in pan.pep.fa. The output also show the number of proteins sequence in  MSU_0-2M.pep.fa which are the same in pan.pep.fa.
 
 #### Bugs or suggestions
 Any bugs or suggestions, please contact the authors.
+
+```
+wjian@gdaas.cn
+```
