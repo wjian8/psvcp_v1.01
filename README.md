@@ -91,9 +91,7 @@ Here we show the tree of the two directory :
   ├── IRRI2K_1390_2.fq.gz
 ```
 
-The genome_gff_dir_example is a directory which has the some genome.fa files and genome_annotation.gff files.
-The fq_dir_example is a directory which has Next generation sequencing data (fq.gz file). 
-The one input file named genome_list is a text file including the genome name. First line is the reference genome, the second line is the first genome which will be compared to reference genome. The third line is the second genome which will be compared to the first linear pan. and so on. Here we show the content of the file:
+The genome_gff_dir_example is a directory that has the genome.fa files and genome_annotation.gff files. The fq_dir_example is a directory that has Next generation sequencing data (fq.gz file). The one input file named genome_list is a text file including the genome name. The first line is the reference genome, and the second line is the first genome which will be compared to the reference genome. The third line is the second genome which will be compared to the first linear pan. and so on. Here we show the content of the file:
 
 ```cat genome_list```
 MSU_0-2M.fa
