@@ -130,7 +130,7 @@ The pipeline can be split into several parts.
    python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py genome_example_dir genome_list ```
    ```
 
-2. It's easy to use bwa to map Next generation sequencing data of one sample against a large reference genome.
+2. It's easy to use bwa to map Next generation sequencing data of one sample against a pangenome genome.
 
    ```
    python3  $path_of_the_pipeline/2Map_fq_to_Pan.py -t 4 -fqd fq_dir -r ReferenceFile -br bam_dir
@@ -233,6 +233,9 @@ gffread pan.gff -g pan.fa -y pan.pep.fa    # pan protain sequence
 python3 $path_of_the_pipeline/Check_gff.py pan.pep.fa genome_example_dir/MSU_0-2M.pep.fa
 ```
 The output will show the number of proteins ID in MSU_0-2M.pep.fa and in pan.pep.fa. The output also show the number of proteins sequence in  MSU_0-2M.pep.fa which are the same in pan.pep.fa.
+
+### Potentail Limitations in the pipeline
+PSVCP is robust in placing novel PAV sequences into the linear pangenome, it may be limited to display more complex SVs such as translocations and inversions, which is a challenge in current pangenomics studies, even for the advanced graph-based pangenome. In addition, due to its read length, short-read sequencing data may have lower sensitivity for SVs detection compared with long-read sequencing data. 
 
 #### Bugs or suggestions
 Any bugs or suggestions, please contact the authors.
