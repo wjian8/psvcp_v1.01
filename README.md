@@ -12,21 +12,21 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 ### 2. Installation
 
 #### Dependencies
-MUMMER (https://github.com/mummer4/mummer)
+MUMMER v4.0.0 (https://github.com/mummer4/mummer)
 
-Assemblytics (https://github.com/marianattestad/assemblytics)
+Assemblytics V1.2.1 (https://github.com/marianattestad/assemblytics)
 
-BWA (http://bio-bwa.sourceforge.net/)
+BWA-MEM v0.7.17-r1198-dirty (http://bio-bwa.sourceforge.net/)
 
 Picard (https://github.com/broadinstitute/picard)
 
-Samtools (https://github.com/samtools/samtools)
+Samtools v.1.9-49-gb321ed1 (https://github.com/samtools/samtools)
 
-bedtools (https://github.com/arq5x/bedtools2)
+bedtools v2.29.2 (https://github.com/arq5x/bedtools2)
 
-seqkit(https://bioinf.shenwei.me/seqkit/)
+seqkit v1.2 (https://bioinf.shenwei.me/seqkit/)
 
-blastn(https://blast.ncbi.nlm.nih.gov/Blast.cgi)
+blastn v2.2.3 (https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 
 R 4.0.3 or later (https://www.r-project.org/) and packages: 
     -hash
