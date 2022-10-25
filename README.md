@@ -5,8 +5,8 @@
 We have developed a user-friendly pangenome construction and PAV genotype calling pipeline.
 
 ​    The pipeline  is composed of:
-* Linear pan-genome construction based on some assembled genomes.
-* Structure Variation (Presence/Absence variation) detecting based on Next generation sequencing data and Linear pan-genome
+* Linear pan-genome construction based on assembled genomes.
+* Structure Variations (Presence/Absence variations, Inversions and translocations) detection based on Next generation sequencing data and Linear pan-genome
 * Population genotype of PAV calling based on the samples' PAV
 
 ### 2. Installation
