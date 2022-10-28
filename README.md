@@ -9,6 +9,10 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 * Structure Variations (Presence/Absence variations, Inversions and translocations) detection based on Next generation sequencing data and Linear pan-genome
 * Population genotype of PAV calling based on the samples' PAV
 
+
+
+
+
 ### 2. Installation
 
 #### Dependencies
@@ -100,6 +104,8 @@ CN1_0-2M.fa
 R498_0-2M.fa
 FH838_0-2M.fa
 
+High-quality genome assemblies enable high accuracy in genome comparison and SVs identification. Therefore, we suggest that users should use high-quality genome assemblies for pangenome construction by our pipeline.
+
 #### Usage
 
 The pipeline can be used like this:
@@ -137,12 +143,14 @@ The pipeline can be split into several parts.
    ```
 
    Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
+Based on our evaluation, with sufficient sequencing coverage of short-read sequencing data, mapping coverage decreased near breakpoints does not affect PAV calling in our pipeline. We recommend sequencing coverage of more than 10x for users on our pipeline.
 
 3. Based on the depth information from every bam file. The PAV genotype will be achieved by:
 
    ```
    python3  $path_of_the_pipeline/3Call_sv_to_genotype.py -br bam_dir -o hmp_prefix
    ```
+
 
 4. The last part is for GWAS. GWAS will perform with GAPIT.
 
