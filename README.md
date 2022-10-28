@@ -130,7 +130,7 @@ The pipeline can be split into several parts.
    or you want to construct pan-genome by several (more than 2) genome.
 
    ```
-   python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py genome_example_dir genome_list ```
+   python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py genome_example_dir genome_list 
    ```
 
 2. It's easy to use bwa to map Next generation sequencing data of one sample against a pangenome genome. Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
