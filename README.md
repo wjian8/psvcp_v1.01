@@ -9,10 +9,6 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 * Structure Variations (Presence/Absence variations, Inversions and translocations) detection based on Next generation sequencing data and Linear pan-genome
 * Population genotype of PAV calling based on the samples' PAV
 
-
-
-
-
 ### 2. Installation
 
 #### Dependencies
@@ -97,13 +93,14 @@ Here we show the tree of the two directory :
 
 The genome_gff_dir_example is a directory that has the genome.fa files and genome_annotation.gff files. The fq_dir_example is a directory that has Next generation sequencing data (fq.gz file). The one input file named genome_list is a text file including the genome name. The first line is the reference genome, and the second line is the first genome which will be compared to the reference genome. The third line is the second genome which will be compared to the first linear pan. and so on. Here we show the content of the file:
 
-```cat genome_list```
+```
+cat genome_list
 MSU_0-2M.fa
 Lemont_0-2M.fa
 CN1_0-2M.fa
 R498_0-2M.fa
 FH838_0-2M.fa
-
+```
 High-quality genome assemblies enable high accuracy in genome comparison and SVs identification. Therefore, we suggest that users should use high-quality genome assemblies for pangenome construction by our pipeline.
 
 #### Usage
@@ -136,13 +133,11 @@ The pipeline can be split into several parts.
    python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py genome_example_dir genome_list ```
    ```
 
-2. It's easy to use bwa to map Next generation sequencing data of one sample against a pangenome genome.
+2. It's easy to use bwa to map Next generation sequencing data of one sample against a pangenome genome. Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
 
    ```
    python3  $path_of_the_pipeline/2Map_fq_to_Pan.py -t 4 -fqd fq_dir -r ReferenceFile -br bam_dir
-   ```
-
-   Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
+   ```   
 Based on our evaluation, with sufficient sequencing coverage of short-read sequencing data, mapping coverage decreased near breakpoints does not affect PAV calling in our pipeline. We recommend sequencing coverage of more than 10x for users on our pipeline.
 
 3. Based on the depth information from every bam file. The PAV genotype will be achieved by:
