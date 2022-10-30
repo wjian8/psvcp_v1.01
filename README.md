@@ -14,7 +14,7 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 #### Dependencies
 MUMMER v4.0.0 (https://github.com/mummer4/mummer)
 
-Assemblytics V1.2.1 (https://github.com/marianattestad/assemblytics)
+Assemblytics v1.2.1 (https://github.com/marianattestad/assemblytics)
 
 BWA-MEM v0.7.17-r1198-dirty (http://bio-bwa.sourceforge.net/)
 
@@ -28,7 +28,7 @@ seqkit v1.2 (https://bioinf.shenwei.me/seqkit/)
 
 blastn v2.2.3 (https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 
-R V3.5.0 or later (https://www.r-project.org/) and packages: 
+R v3.5.0 or later (https://www.r-project.org/) and packages: 
     -hash
     -parallel
     -snowfall
