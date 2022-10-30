@@ -28,7 +28,7 @@ seqkit v1.2 (https://bioinf.shenwei.me/seqkit/)
 
 blastn v2.2.3 (https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 
-R 4.0.3 or later (https://www.r-project.org/) and packages: 
+R V3.5.0 or later (https://www.r-project.org/) and packages: 
     -hash
     -parallel
     -snowfall
