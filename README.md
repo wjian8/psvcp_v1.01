@@ -214,8 +214,8 @@ python3 $path_of_the_pipeline/translocation_and_inversion/4InversionBedSamtoolsG
 ```
 We counted the number of the reads spanning a 39 bp region with a conjunction point at the centre. If the mapping coverage of inversion's breakpoint was less than 5x, we defined the genotype of the breakpoint as absence ("A"). Otherwise, we defined the genotype (>=5x) as presence ("C"). "A" means the inversion and "C" means it is synthetic with our pangenome.
 
+PSVCP is robust in placing novel PAV sequences into the linear pangenome, it may be limited to display more complex SVs such as translocations and inversions, which is a challenge in current pangenomics studies, even for the advanced graph-based pangenome. In addition, due to its read length, short-read sequencing data may have lower sensitivity for SVs detection compared with long-read sequencing data.
 
-PSVCP is robust in placing novel PAV sequences into the linear pangenome, it may be limited to display more complex SVs such as translocations and inversions, which is a challenge in current pangenomics studies, even for the advanced graph-based pangenome. In addition, due to its read length, short-read sequencing data may have lower sensitivity for SVs detection compared with long-read sequencing data
 ---
 
 
