@@ -6,7 +6,7 @@ We have developed a user-friendly pangenome construction and PAV genotype callin
 
 ​    The pipeline  is composed of:
 * Linear pan-genome construction based on assembled genomes.
-* Structure Variations (Presence/Absence variations, Inversions and translocations) detection based on Next generation sequencing data and Linear pan-genome
+* Structure Variations (Presence/Absence variations, Inversions and translocations) detection based on Next generation sequencing data and the Linear pan-genome
 * Population genotype of PAV calling based on the samples' PAV
 
 ### 2. Installation
@@ -122,7 +122,7 @@ the ouput file population_hmp is the prefix of a genotype file which is hapmap f
 
 The pipeline can be split into several parts.
 
-1. If you just want to construct a linear pan-genome by two genome.
+1. If you just want to construct a linear pan-genome by two genome. We recommend users use high-quality genomes for pangenome constructions.  
 
    ```
    bash $path_of_the_pipeline/1Genome_construct_Pangenome.sh ref.fa query.fa > job.sh && bash job.sh
@@ -134,12 +134,12 @@ The pipeline can be split into several parts.
    python3 $path_of_the_pipeline/Construct_pan_and_Call_sv.py genome_example_dir genome_list 
    ```
 
-2. It's easy to use bwa to map Next generation sequencing data of one sample against a pangenome genome. Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
+2. It's easy to use bwa to map Next generation sequencing data of one sample against a pangenome. Put the *1.fq.gz and *2.fq.gz file into the fq_dir, the 2Map_fq_to_Pan.py script can map all samples to the reference.
 
    ```
    python3  $path_of_the_pipeline/2Map_fq_to_Pan.py -t 4 -fqd fq_dir -r ReferenceFile -br bam_dir
    ```   
-Based on our evaluation, with sufficient sequencing coverage of short-read sequencing data, mapping coverage decreased near breakpoints does not affect PAV calling in our pipeline. We recommend sequencing coverage of more than 10x for users on our pipeline.
+Based on our evaluation, with sufficient sequencing coverage of short-read sequencing data, mapping coverage decreased near breakpoints does not affect PAV calling in our pipeline. We recommend sequencing coverage of more than 10x for users using our pipeline.
 
 3. Based on the depth information from every bam file. The PAV genotype will be achieved by:
 
