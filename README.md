@@ -249,5 +249,6 @@ wjian@gdaas.cn
 ```
 
 #### Update
-2023.3.8
-Add a checkpoint in the script "Refgenome_update_by_quest.sh". If no new insertions were identified in comparison to the reference file. The script will skip those steps and generate the new reference from the previous reference without adding insertions.
+
+Add a checkpoint in the script "Refgenome_update_by_quest.sh". If no new insertions were identified in comparison to the reference file. The script will skip those steps and generate the new reference from the previous reference without adding insertions. 2023.3.8
+
