@@ -247,3 +247,7 @@ Any bugs or suggestions, please contact the authors.
 ```
 wjian@gdaas.cn
 ```
+
+#### update
+2023.3.8
+Add a checkpoint in the script "Refgenome_update_by_quest.sh". If no new insertions were identified in comparison to the reference file. The script will skip those steps and generate the new reference from the previous reference without adding insertions.
