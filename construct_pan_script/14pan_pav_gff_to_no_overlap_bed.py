@@ -15,6 +15,12 @@ if line1:
     pos_start1 = line1.strip().split()[3]
     pos_end1 = line1.strip().split()[4]
 line2 = True
+
+
+def overlap_two_seq(start1,end1,start2,end2):
+    return(min(start1,end1,start2,end2), max(start1,end1,start2,end2))
+
+
 while line2:
     line2 = gff_file.readline()
     if line2:
@@ -27,7 +33,7 @@ while line2:
             pos_start1 = pos_start2
             pos_end1 = pos_end2
         else:
-            pass
+            pos_start1, pos_end1 = overlap_two_seq(pos_start1,pos_end1,pos_start2,pos_end2)
 
     else:
         print("{}\t{}\t{}".format(chromosome1, pos_start1, pos_end1), file=bed_file)
