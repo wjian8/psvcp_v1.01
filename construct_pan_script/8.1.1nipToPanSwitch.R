@@ -1,5 +1,5 @@
 
-#Usage: Rscript $0 snp.gff.file  pav.bed2.file update1.gff
+#Usage: Rscript $0    pos_in_ref0.txt    pan.pav.sorted.gff.no_overlap.bed   output_pos_in_pan.txt
 Args <- commandArgs()
 gff <- read.table(file=Args[6],header=F)
 bed2 <- read.table(file=Args[7],header=F)
