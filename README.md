@@ -236,10 +236,10 @@ gffread pan.gff -g pan.fa -y pan.pep.fa    # pan protain sequence
 ```
 python3 $path_of_the_pipeline/Check_gff.py pan.pep.fa genome_example_dir/MSU_0-2M.pep.fa
 ```
-The output will show the number of proteins ID in MSU_0-2M.pep.fa and in pan.pep.fa. The output also show the number of proteins sequence in  MSU_0-2M.pep.fa which are the same in pan.pep.fa.
+The output will show the number of proteins ID in MSU_0-2M.pep.fa and in pan.pep.fa. The output also shows the number of protein sequences in  MSU_0-2M.pep.fa, which are the same in pan.pep.fa.
 
-### Potentail Limitations in the pipeline
-PSVCP is robust in placing novel PAV sequences into the linear pangenome, it may be limited to display more complex SVs such as translocations and inversions, which is a challenge in current pangenomics studies, even for the advanced graph-based pangenome. In addition, due to its read length, short-read sequencing data may have lower sensitivity for SVs detection compared with long-read sequencing data. 
+### Potential Limitations in the pipeline
+PSVCP is robust in placing novel PAV sequences (Insertions) into the linear pangenome. It may be limited to displaying more complex SVs such as Repeat_expansion, Repeat_contraction, Tandem_expansion and Tandem_contraction. In addition, due to its read length, short-read sequencing data may have lower sensitivity for SVs detection compared with long-read sequencing data. 
 
 #### Bugs or suggestions
 Any bugs or suggestions, please contact the authors.
