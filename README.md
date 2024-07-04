@@ -125,7 +125,7 @@ The pipeline can be split into several parts.
 1. If you just want to construct a linear pan-genome by two genome. We recommend users use high-quality genomes for pangenome constructions.  
 
    ```
-   bash $path_of_the_pipeline/1Genome_construct_Pangenome.sh ref.fa query.fa > job.sh && bash job.sh
+   bash $path_of_the_pipeline/Refgenome_update_by_quest.sh ref.fa query.fa > job.sh && bash job.sh
    ```
 
    or you want to construct pan-genome by several (more than 2) genome.
