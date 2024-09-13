@@ -26,7 +26,7 @@ clusterExport(cl,c('RAGOO_gff','bed3'))
 results <- parLapply(cl, unique(bed3[,1]), get_pv_gene_each_chr)
 all_gene_in_pv <- do.call('rbind',results)
 stopCluster(cl)
-print(nrow(all_gene_in_pv))
+
 if (nrow(all_gene_in_pv) > 0){
     write.table(all_gene_in_pv,file=Args[8],sep='\t',col.names=F,row.names=F,quote=F)
     }
