@@ -13,8 +13,6 @@ get_pv_gene_each_chr <- function(chr){
     if (nrow(one_chr_bed3) > 0 & nrow(one_chr_gff) > 0) {
         for (i in seq(nrow(one_chr_gff))){
             for (j in seq(nrow(one_chr_bed3))){
-                    print(i)
-                    print(j)
                     if (one_chr_bed3[j,8]<=one_chr_gff[i,4] & one_chr_gff[i,5]<=one_chr_bed3[j,8]+nchar(one_chr_bed3[j,5])-1){
                     gene_in_pv  <- rbind(gene_in_pv,cbind(one_chr_gff[i,],one_chr_bed3[j,]))
                     }
